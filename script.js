@@ -1,8 +1,8 @@
-import { quotes } from '/quotes.js';
+import { quotes } from './quotes.js';
 
 let currentQuoteIndex = -1;
-const quoteElement = document.getElementById('quote');
-const button = document.getElementById('quoteBtn');
+let quoteElement;
+let button;
 
 function getRandomIndex() {
     let newIndex;
@@ -34,7 +34,15 @@ async function displayRandomQuote() {
     button.disabled = false;
 }
 
-// Event listeners
-button.addEventListener('click', displayRandomQuote);
-// if you want to give a random quote on loadof website
-/*window.addEventListener('DOMContentLoaded', displayRandomQuote);*/
+// Wait for the DOM to load
+document.addEventListener('DOMContentLoaded', () => {
+    // Get references to DOM elements
+    quoteElement = document.getElementById('quote');
+    button = document.getElementById('quoteBtn');
+
+    // Add event listener to the button
+    button.addEventListener('click', displayRandomQuote);
+
+    // Display the first quote
+    displayRandomQuote();
+});
