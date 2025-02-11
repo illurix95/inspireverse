@@ -1,0 +1,208 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #3a9d40;
+    --header-gradient: linear-gradient(135deg, #1d976c, #93f9b9);
+    --background-gradient: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+    --quote-bg: linear-gradient(135deg, #ffffff, #e9ecef);
+    --text-color: #333;
+    --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background: var(--background-gradient);
+    color: var(--text-color);
+    text-align: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: var(--header-gradient);
+    color: white;
+    padding: 2rem 1rem;
+    box-shadow: var(--shadow);
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+}
+
+header p {
+    margin: 0.5rem 0 0;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    margin: 0 1rem;
+    padding: 1rem;
+}
+
+.quote-container {
+    background: var(--quote-bg);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px solid var(--primary-color);
+    box-shadow: var(--shadow);
+    max-width: 600px;
+    width: 110%;
+    margin-bottom: 2rem;
+    transition: transform 0.3s ease;
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+}
+
+.quote-container::before,
+.quote-container::after {
+    content: open-quote;
+    font-size: 4rem;
+    position: absolute;
+    color: var(--primary-color);
+    opacity: 0.8;
+}
+
+.quote-container::before {
+    left: 10px;
+    top: -5px;
+}
+
+.quote-container::after {
+    content: close-quote;
+    right: 10px;
+    bottom: -35px;
+}
+
+.quote-container p {
+    font-size: 1.25rem;
+    line-height: 1.6;
+    margin: 0;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+button {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+    transform: scale(1.05);
+    filter: brightness(1.1);
+}
+footer {
+    background-color: #333;
+    color: white;
+    padding: 0.5rem 0; /* Reduced from 1rem */
+    margin-top: auto;
+    text-align: center;
+    font-size: 0.875rem; /* Added for smaller text */
+}
+
+footer p {
+    margin: 0.3rem 0; /* Reduced vertical spacing between lines */
+    line-height: 1.3; /* Tighter line height */
+}
+
+footer a {
+    color: #93f9b9;
+    text-decoration: none;
+    font-size: 0.8rem; /* Smaller font size for email */
+}
+
+
+@media (max-width: 480px) {
+    footer {
+        padding: 0.4rem 0;
+    }
+    footer p {
+        font-size: 0.75rem;
+    }
+    footer a {
+        font-size: 0.7rem;
+    }
+    .quote-container {
+        padding: 1.5rem;
+        min-height: 150px;
+    }
+    
+    .quote-container::before,
+    .quote-container::after {
+        font-size: 3rem;
+    }
+    
+    .quote-container p {
+        font-size: 1.1rem;
+    }
+}
+
+.fade-out {
+    opacity: 0 !important;
+}
+header h1 {
+    margin: 0;
+    font-size: clamp(2rem, 5vw, 2.5rem);
+    transform: translateY(-100%);
+    opacity: 0;
+    animation: slideIn 1s ease-out forwards;
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+header p {
+    margin: 0.5rem 0 0;
+    font-size: clamp(1rem, 3vw, 1.25rem);
+    transform: translateY(100%);
+    opacity: 0;
+    animation: slideUp 1s ease-out 0.5s forwards;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
